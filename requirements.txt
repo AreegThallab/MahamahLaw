@@ -1,0 +1,3 @@
+# Django: routing, HTML templates, database ORM, forms, authentication and admin.
+# Keep the existing Django 5.2 version range for project compatibility.
+Django>=5.2.18,<5.3

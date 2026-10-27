@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% include "includes/navbar.html" %}
+
+<main>
+    <section class="hero hero-office section-dark" id="home">
+        <div class="hero-visual hero-office-visual">
+            <img src="{% static 'images/riyadh-office-hero.png' %}" alt="ميزان العدالة وكتب قانونية في مكتب يطل على الرياض وقت الغروب" fetchpriority="high" loading="eager" width="1536" height="1024">
+        </div>
+        <svg class="hero-paper" viewBox="0 0 1600 900" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <defs>
+                <linearGradient id="hero-paper-shade" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#fffefa"/>
+                    <stop offset="1" stop-color="#f5eee3"/>
+                </linearGradient>
+                <linearGradient id="hero-gold-shade" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0" stop-color="#b68a45" stop-opacity=".2"/>
+                    <stop offset="1" stop-color="#fffefa" stop-opacity=".7"/>
+                </linearGradient>
+            </defs>
+            <path d="M870 0 C990 205 870 345 770 565 C715 690 690 820 725 900 H1600 V0 Z" fill="url(#hero-gold-shade)" stroke="#d0ad76" stroke-width="1"/>
+            <path d="M990 0 C940 195 845 360 805 555 C765 745 780 830 940 900 H1600 V0 Z" fill="url(#hero-paper-shade)"/>
+            <path d="M1110 0 C1030 215 835 340 800 560 C760 775 875 860 1105 900" fill="none" stroke="#c59b61" stroke-width="1" opacity=".75"/>
+        </svg>
+        <div class="hero-grid container">
+            <div class="hero-content reveal">
+                <h1>خبرة قانونية تحمي مصالحك</h1>
+                <p>في محاماة للمحاماة والاستشارات القانونية، نقدم حلولًا قانونية متخصصة تجمع بين الخبرة والدقة والفهم العميق لاحتياجات عملائنا.</p>
+                <div class="hero-actions">
+                    <a class="btn btn-gold" href="#contact">احجز استشارة</a>
+                    <a class="btn btn-ghost" href="#services">استكشف خدماتــنا</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section about" id="about">
+        <div class="split container">
+            <div class="image-frame reveal">
+                <img src="{% static 'images/law-office-hero.png' %}" alt="مكتب قانوني حديث" loading="lazy">
+            </div>
+            <div class="section-copy reveal">
+                <h2>شريكك القانوني نحو قرارات أكثر ثقة</h2>
+                <p>محاماة للمحاماة والاستشارات القانونية يقدم خدمات قانونية متكاملة للأفراد والمنشآت، من خلال فهم دقيق لكل قضية وبناء استراتيجية قانونية واضحة تهدف إلى حماية مصالح العميل ودعمه في اتخاذ القرار الصحيح.</p>
+                <a class="btn btn-primary" href="#methodology">اعرف المزيد</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="achievements" id="achievements">
+        <p class="container">أرقام توضيحية مؤقتة لحين اعتماد بيانات محاماة.</p>
+        <div class="stats-grid container reveal" data-counters>
+            {% for item in achievements %}
+                <div class="stat-card">
+                    <strong><span data-count="{{ item.value }}">0</span>{{ item.suffix }}</strong>
+                    <p>{{ item.label }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="section" id="expertise">
+        <div class="section-head container reveal">
+            <h2>مجالات الخبرة</h2>
+            <p>خبرة قانونية متخصصة تغطي احتياجات الأفراد والمنشآت في مختلف المجالات.</p>
+        </div>
+        <div class="card-grid container">
+            {% for area in expertiseAreas %}
+                <article class="expertise-card reveal">
+                    <span class="icon-badge" aria-hidden="true">{% include "includes/expertise_icon.html" %}</span>
+                    <h3>{{ area.title }}</h3>
+                    <p>{{ area.text }}</p>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="section services-band" id="services">
+        <div class="section-head container reveal">
+            <h2>خدمات قانونية تحمي مصالحك</h2>
+        </div>
+        <div class="services-grid container">
+            {% for service in services %}
+                <article class="service-card reveal">
+                    <span>{{ forloop.counter|stringformat:"02d" }}</span>
+                    <h3>{{ service.title }}</h3>
+                    <p>{{ service.text }}</p>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="section why" id="why">
+        <div class="why-grid container">
+            <div class="section-copy reveal">
+                <h2>لأن التفاصيل القانونية تصنع الفارق</h2>
+                <p>نعمل بمنهج يوازن بين الدقة النظامية ووضوح التواصل، حتى يعرف العميل موقعه القانوني والخطوة التالية بثقة.</p>
+            </div>
+            <div class="why-list">
+                {% for item in whyItems %}
+                    <div class="why-item reveal">
+                        <span>{{ forloop.counter|stringformat:"02d" }}</span>
+                        <strong>{{ item }}</strong>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="section methodology" id="methodology">
+        <div class="section-head container reveal">
+            <h2>كيف نعمل؟</h2>
+            <p>خطوات واضحة تمنحك الاطمئنان من لحظة التواصل وحتى متابعة المسار القانوني.</p>
+        </div>
+        <div class="timeline timeline-sequence container reveal">
+            {% for step in steps %}
+                <article class="timeline-item">
+                    <span>{{ forloop.counter|stringformat:"02d" }}</span>
+                    <h3>{{ step.title }}</h3>
+                    <p>{{ step.text }}</p>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="section team" id="team">
+        <div class="section-head container reveal">
+            <h2>خبرات قانونية تعمل من أجلك</h2>
+            <p class="team-demo-note">فريق تجريبي: أسماء وملفات خيالية للتطوير، وليست بيانات مهنيين أو موظفين موثّقين.</p>
+        </div>
+        {% include "includes/demo_team.html" %}
+    </section>
+
+    <section class="section testimonials" id="testimonials">
+        <div class="section-head container reveal">
+            <h2>ثقة نبنيها مع كل تجربة</h2>
+        </div>
+        {% if demo_reviews %}<p class="container demo-label">نماذج تجريبية</p>{% endif %}
+        <div class="testimonial-shell container reveal">
+            <button class="slider-btn" type="button" data-slider-prev aria-label="الرأي السابق">‹</button>
+            <div class="testimonial-track" data-testimonial-track>
+                {% for review in displayReviews %}
+                    <article class="testimonial-card">
+                        <div class="rating" aria-label="تقييم {{ review.rating }} من 5">
+                            {% for i in stars %}
+                                <span class="{% if i <= review.rating %}filled{% endif %}">★</span>
+                            {% endfor %}
+                        </div>
+                        <p>“{{ review.review }}”</p>
+                        <strong>{{ review.name }}</strong>
+                        {% if review.is_demo %}<small class="review-demo-label">نموذج تجريبي — ليس شهادة عميل حقيقية</small>{% endif %}
+                    </article>
+                {% endfor %}
+            </div>
+            <button class="slider-btn" type="button" data-slider-next aria-label="الرأي التالي">›</button>
+        </div>
+
+        <div class="form-panel container reveal">
+            <div>
+                <h3>رأيك يساعدنا على تحسين التجربة القانونية</h3>
+                {% for message in messages %}{% if "review" in message.tags %}<p class="form-alert success">{{ message }}</p>{% endif %}{% endfor %}
+            </div>
+            <form method="POST" action="{% url 'reviews.store' %}" class="stacked-form" data-client-form>
+                {% csrf_token %}
+                <input class="hp-field" type="text" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true">
+                <label>الاسم <input type="text" name="name" value="{{ review_form.name.value|default_if_none:"" }}" required maxlength="120"></label>
+                <label>التقييم من 1 إلى 5
+                    <select name="rating" required>
+                        <option value="">اختر التقييم</option>
+                        {% for value in stars %}<option value="{{ value }}" {% if review_form.rating.value|stringformat:"s" == value|stringformat:"s" %}selected{% endif %}>{{ value }} من 5</option>{% endfor %}
+                    </select>
+                </label>
+                <label>الرأي <textarea name="review" rows="4" required maxlength="1200">{{ review_form.review.value|default_if_none:"" }}</textarea></label>
+                {% for field in review_form %}{% for error in field.errors %}<p class="form-alert">{{ field.label }}: {{ error }}</p>{% endfor %}{% endfor %}
+                <button class="btn btn-primary" type="submit">إرسال الرأي</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="section faq" id="faq">
+        <div class="section-head container reveal">
+            <h2>الأسئلة الشائعة</h2>
+        </div>
+        <div class="faq-list container">
+            {% for faq in faqs %}
+                <article class="faq-item reveal">
+                    <button type="button" aria-expanded="false">
+                        <span>{{ faq.question }}</span>
+                        <b>+</b>
+                    </button>
+                    <div class="faq-answer"><p>{{ faq.answer }}</p></div>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="section contact" id="contact">
+        <div class="contact-grid container">
+            <div class="section-copy reveal">
+                <h2>تواصل</h2>
+                <p>يرجى عدم إرسال معلومات شديدة الحساسية أو مستندات سرية عبر هذا النموذج. سيتم التواصل معك لاستكمال التفاصيل عبر القنوات المناسبة.</p>
+                <ul class="contact-points">
+                    <li>الهاتف: يُحدد لاحقًا</li>
+                    <li>البريد الإلكتروني: يُحدد لاحقًا</li>
+                    <li>العنوان: يُحدد لاحقًا</li>
+                </ul>
+            </div>
+            <form method="POST" action="{% url 'contact.store' %}" class="contact-form reveal" data-client-form>
+                {% csrf_token %}
+                <input class="hp-field" type="text" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true">
+                {% for message in messages %}{% if "contact" in message.tags %}<p class="form-alert success">{{ message }}</p>{% endif %}{% endfor %}
+                <label>الاسم الكامل <input type="text" name="name" value="{{ contact_form.name.value|default_if_none:"" }}" required maxlength="120"></label>
+                <label>رقم الجوال <input type="tel" name="phone" value="{{ contact_form.phone.value|default_if_none:"" }}" required maxlength="25"></label>
+                <label>البريد الإلكتروني <input type="email" name="email" value="{{ contact_form.email.value|default_if_none:"" }}" maxlength="150"></label>
+                <label>نوع الخدمة
+                    <select name="service" required>
+                        <option value="">اختر الخدمة</option>
+                        {% for service in services %}
+                            <option value="{{ service.title }}" {% if contact_form.service.value == service.title %}selected{% endif %}>{{ service.title }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+                <label>الرسالة <textarea name="message" rows="5" required maxlength="2000">{{ contact_form.message.value|default_if_none:"" }}</textarea></label>
+                {% for field in contact_form %}{% for error in field.errors %}<p class="form-alert">{{ field.label }}: {{ error }}</p>{% endfor %}{% endfor %}
+                <button class="btn btn-gold" type="submit">إرسال الطلب</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="final-cta section-dark">
+        <div class="container reveal">
+            <h2>نحن هنا لمساعدتك في فهم موقفك القانوني واتخاذ الخطوة المناسبة بثقة ووضوح.</h2>
+            <a class="btn btn-gold" href="#contact">تواصل معنا</a>
+        </div>
+    </section>
+</main>
+
+{% include "includes/footer.html" %}
+
+<button class="back-to-top" type="button" data-back-top aria-label="العودة للأعلى">↑</button>
+{% endblock %}

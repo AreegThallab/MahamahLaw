@@ -1,0 +1,3 @@
+{% extends "dashboard/base.html" %}
+{% block content %}<div class="page-heading"><div><h1>{{ page_title }}</h1><p>متابعة الطلبات الواردة وحالتها، مع حفظ تفاصيل العملاء بسرية.</p></div>{% include "dashboard/includes/live_status.html" %}</div>
+<div data-live-region data-live-mode="{{ request_kind }}" data-live-url="{% url 'dashboard:live' %}">{% include "dashboard/includes/request_panel.html" %}</div>{% endblock %}

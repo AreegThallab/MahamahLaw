@@ -1,0 +1,2 @@
+{% extends "dashboard/base.html" %}
+{% block content %}<div class="page-heading"><div><h1>تأكيد رفض التقييم</h1><p>لن يظهر التقييم في الموقع العام بعد رفضه.</p></div></div><section class="panel detail-panel"><h2>{{ item.name }}</h2><p class="full-message">{{ item.review|linebreaksbr }}</p><form method="post" class="dashboard-form">{% csrf_token %}{{ form.as_p }}<div class="detail-actions"><button class="button button-danger" type="submit">تأكيد الرفض</button><a class="button" href="{% url 'dashboard:review-detail' item.pk %}">إلغاء</a></div></form></section>{% endblock %}

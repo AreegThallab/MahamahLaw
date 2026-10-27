@@ -1,0 +1,62 @@
+﻿# Python bytecode and virtual environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+ENV/
+.venv-*/
+
+# Local environment and secrets (keep the safe configuration template)
+.env
+.env.*
+!.env.example
+.local-secret
+*.pem
+*.key
+
+# Local databases and exports
+*.sqlite3
+*.sqlite3-*
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+*.sql
+
+# Generated Django assets and user uploads
+/staticfiles/
+/media/
+
+# Backups and temporary files
+/backups/
+/backup/
+*.bak
+*.bkp
+*.tmp
+*.temp
+*.log
+*~
+
+# Test, coverage, lint and build output
+/test-results/
+/playwright-report/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+/build/
+/dist/
+*.egg-info/
+
+# Editor and operating system files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+Desktop.ini

@@ -1,0 +1,27 @@
+/* Keep original logo slots; contain preserves the new emblem proportions. */
+.logo-brand img,
+.hero-logo,
+.logo-stage>img {
+    object-fit: contain;
+}
+
+.navbar .logo-brand img {
+    height: 72px;
+}
+
+.hero-logo {
+    height: 88px;
+}
+
+.footer-brand img {
+    height: 76px;
+}
+
+.social-links span {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(16, 35, 57, .1);
+    border-radius: var(--radius);
+}

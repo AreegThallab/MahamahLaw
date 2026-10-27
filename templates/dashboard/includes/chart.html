@@ -1,0 +1,8 @@
+<section class="chart-card" aria-label="{{ chart_title|default:'حالة طلبات الاستشارات' }}">
+    <h3>{{ chart_title|default:"حالة طلبات الاستشارات" }}</h3>
+    <div class="chart-content">
+        <div class="donut" style="--donut: {{ chart.gradient }}" role="img" aria-label="إجمالي الطلبات: {{ chart.total }}"><div><strong data-chart-total>{{ chart.total }}</strong><small>إجمالي الطلبات</small></div></div>
+        <ul class="chart-legend">{% for item in chart.legend %}<li><i style="--legend-color: {{ item.color }}"></i><span>{{ item.label }}<b>{{ item.count }}</b></span></li>{% endfor %}</ul>
+    </div>
+    {% if not chart.total %}<p class="empty-chart">ستظهر الإحصاءات عند استلام الطلبات.</p>{% endif %}
+</section>

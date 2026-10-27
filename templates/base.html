@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="محاماة للمحاماة والاستشارات القانونية يقدم خدمات قانونية متخصصة للأفراد والمنشآت في المملكة العربية السعودية.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="محاماة للمحاماة والاستشارات القانونية">
+    <meta property="og:description" content="خبرة قانونية تحمي مصالحك وتبني موقفًا أقوى.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ar_SA">
+    <meta property="og:image" content="{% static 'images/law-office-hero.png' %}">
+    <title>محاماة للمحاماة والاستشارات القانونية | MAHAMAH</title>
+    <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/branding.css' %}">
+    <link rel="stylesheet" href="{% static 'css/refinements.css' %}">
+    <link rel="stylesheet" href="{% static 'css/typography.css' %}">
+    <link rel="stylesheet" href="{% static 'css/hero.css' %}">
+    <script src="{% static 'js/main.js' %}" defer></script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "LegalService",
+            "name": "محاماة للمحاماة والاستشارات القانونية",
+            "alternateName": "MAHAMAH",
+            
+            "areaServed": "Saudi Arabia",
+            "url": "{{ request.scheme }}://{{ request.get_host }}{% url "home" %}"
+        }
+    </script>
+</head>
+<body>
+    {% block content %}{% endblock %}
+</body>
+</html>

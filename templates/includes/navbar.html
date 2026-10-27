@@ -1,0 +1,21 @@
+{% load static %}
+<header class="site-header" data-header>
+    <nav class="navbar container" aria-label="التنقل الرئــيسي">
+        <a class="brand logo-brand" href="#home" aria-label="محاماة">
+            <img src="{% static 'images/logo.png' %}" alt="شعار محاماة" width="180" height="72">
+        </a>
+
+        <button class="menu-toggle" type="button" aria-label="فتح القائمة" aria-expanded="false" data-menu-toggle>
+            <span></span><span></span><span></span>
+        </button>
+
+        <div class="nav-panel" data-nav-panel>
+            <ul class="nav-links">
+                {% for link in navLinks %}
+                    <li><a href="{{ link.href }}" class="nav-link">{{ link.label }}</a></li>
+                {% endfor %}
+            </ul>
+            <a class="btn btn-primary nav-cta" href="#contact">احجــز استشــارة</a>
+        </div>
+    </nav>
+</header>

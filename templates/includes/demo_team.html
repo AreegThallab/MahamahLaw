@@ -1,0 +1,10 @@
+{% comment %}
+Development-only illustrative profiles requested by the owner. These are not verified staff.
+Keep both the section notice and per-card notice visible in every environment, including
+production. Replace this entire include with verified profiles before a real team launch.
+{% endcomment %}
+<div class="team-grid container" data-demo-content="team">
+    {% include "includes/team_card.html" with name="أحمد العتيبي" role="شريك مؤسس" specialty="القضايا التجارية والشركات" bio="خبرة في بناء الاستراتيجيات القانونية وتمثيل المنشآت في النزاعات التجارية." only %}
+    {% include "includes/team_card.html" with name="سارة القحطاني" role="مستشارة قانونية" specialty="العقود والتحكيم" bio="متخصصة في صياغة العقود ومراجعتها وإدارة المخاطر التعاقدية وتسوية النزاعات." only %}
+    {% include "includes/team_card.html" with name="نورة الدوسري" role="محامية" specialty="الأحوال الشخصية والعمل" bio="متخصصة في القضايا الشخصية والعمالية ومتابعة الإجراءات القانونية." only %}
+</div>

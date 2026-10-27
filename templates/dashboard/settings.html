@@ -1,0 +1,2 @@
+{% extends "dashboard/base.html" %}
+{% block content %}<div class="page-heading"><div><h1>الإعدادات</h1><p>تفضيلات عرض لوحة الإدارة لهذا المتصفح والجلسة.</p></div></div><section class="panel detail-panel narrow-panel"><h2>تفضيلات اللوحة</h2><form method="post" class="dashboard-form">{% csrf_token %}{{ form.as_p }}<button class="button button-gold" type="submit">حفظ التفضيلات</button></form><p class="muted">إيقاف التحديث التلقائي لا يمنع ظهور السجلات الجديدة عند تحديث الصفحة. هذه التفضيلات لا تغيّر إعدادات الموقع أو صلاحيات المستخدمين.</p></section>{% endblock %}

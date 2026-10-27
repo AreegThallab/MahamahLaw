@@ -1,0 +1,9 @@
+{% load dashboard_tags %}
+<div class="table-footer">
+    <small>{% if rows.paginator.count %}عرض {{ rows.start_index }}–{{ rows.end_index }} من أصل {{ rows.paginator.count }}{% else %}لا توجد سجلات{% endif %}</small>
+    {% if rows.paginator.num_pages > 1 %}<nav class="pagination" aria-label="صفحات {{ label }}">
+        {% if rows.has_previous %}<a href="{% page_url param rows.previous_page_number %}" aria-label="الصفحة السابقة">‹</a>{% endif %}
+        {% for number in rows.paginator.page_range %}{% if number == 1 or number == rows.paginator.num_pages or number >= rows.number|add:'-2' and number <= rows.number|add:'2' %}<a href="{% page_url param number %}" {% if rows.number == number %}aria-current="page"{% endif %}>{{ number }}</a>{% endif %}{% endfor %}
+        {% if rows.has_next %}<a href="{% page_url param rows.next_page_number %}" aria-label="الصفحة التالية">›</a>{% endif %}
+    </nav>{% endif %}
+</div>

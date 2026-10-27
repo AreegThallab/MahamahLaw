@@ -1,0 +1,18 @@
+<section class="panel request-panel">
+    <header class="panel-header"><h2>{% include "dashboard/includes/icon.html" with name="file" %}{% if home_view %}آخر طلبات الاستشارات{% elif request_kind == 'contact' %}طلبات التواصل{% else %}طلبات الاستشارات{% endif %}</h2>
+        <form class="table-search" method="get" aria-label="بحث وتصفية الطلبات">
+            {% if home_view %}<input type="hidden" name="vq" value="{{ review_query }}">{% endif %}
+            <div class="search-field"><input type="search" name="{{ request_prefix }}q" value="{{ request_query }}" maxlength="200" placeholder="البحث في الطلبات..." aria-label="البحث في الطلبات"><button aria-label="بحث">{% include "dashboard/includes/icon.html" with name="search" %}</button></div>
+            <select name="{{ request_prefix }}status" aria-label="حالة الطلب"><option value="">كل الحالات</option>{% for value,label in status_choices %}<option value="{{ value }}" {% if selected_status == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select>
+            <button class="button button-light" type="submit">{% include "dashboard/includes/icon.html" with name="filter" %}تصفية</button>
+            {% if home_view %}<a class="button button-warm" href="{% url 'dashboard:consultations' %}">عرض الكل {% include "dashboard/includes/icon.html" with name="arrow" %}</a>{% endif %}
+        </form>
+    </header>
+    <div class="requests-layout">
+        {% if request_kind == 'contact' %}{% include "dashboard/includes/chart.html" with chart_title="حالة طلبات التواصل" %}{% else %}{% include "dashboard/includes/chart.html" %}{% endif %}
+        <div class="table-area"><div class="table-scroll" tabindex="0" role="region" aria-label="جدول الطلبات"><table>
+            <thead><tr><th scope="col">#</th><th scope="col">الاسم</th>{% if request_kind != 'contact' %}<th scope="col">نوع الخدمة</th>{% endif %}<th scope="col">رقم الجوال</th><th scope="col">البريد الإلكتروني</th>{% if request_kind == 'contact' %}<th scope="col">الرسالة</th>{% endif %}<th scope="col">تاريخ الطلب</th><th scope="col">الحالة</th><th scope="col">إجراءات</th></tr></thead>
+            <tbody>{% for item in request_rows %}<tr><td>{{ item.pk }}</td><td class="name-cell">{{ item.name }}{% if item.is_demo %}<small class="demo-badge">تجريبي</small>{% endif %}</td>{% if request_kind != 'contact' %}<td>{{ item.service }}</td>{% endif %}<td><bdi dir="ltr">{{ item.phone }}</bdi></td><td><bdi>{{ item.email|default:"—" }}</bdi></td>{% if request_kind == 'contact' %}<td class="message-cell">{{ item.message|truncatechars:70 }}</td>{% endif %}<td class="date-cell">{{ item.created_at|date:"Y/m/d H:i"|default:"—" }}</td><td><span class="status status-{{ item.status }}">{{ item.get_status_display }}</span></td><td><a class="button button-small" href="{% url 'dashboard:request-detail' item.pk %}">{% include "dashboard/includes/icon.html" with name="eye" %}عرض</a></td></tr>{% empty %}<tr><td colspan="9" class="empty-state">لا توجد طلبات مطابقة. تظهر الطلبات الجديدة هنا تلقائيًا.</td></tr>{% endfor %}</tbody>
+        </table></div>{% include "dashboard/includes/pagination.html" with rows=request_rows param=request_page_param label="الطلبات" %}</div>
+    </div>
+</section>

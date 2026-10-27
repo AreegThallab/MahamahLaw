@@ -1,0 +1,5 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<div class="page-heading"><div><h1>مرحبًا بك {% include "dashboard/includes/icon.html" with name="wave" %}</h1><p>يمكنك هنا إدارة طلبات الاستشارات والتواصل وتقييمات العملاء</p></div>{% include "dashboard/includes/live_status.html" %}</div>
+<div data-live-region data-live-mode="home" data-live-url="{% url 'dashboard:live' %}">{% include "dashboard/includes/home_data.html" %}</div>
+{% endblock %}

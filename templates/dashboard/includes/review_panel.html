@@ -1,0 +1,15 @@
+<section class="panel review-panel">
+    <header class="panel-header"><h2>{% include "dashboard/includes/icon.html" with name="star" %}تقييمات العملاء</h2>
+        <form class="table-search" method="get" aria-label="بحث التقييمات">
+            {% if home_view %}<input type="hidden" name="rq" value="{{ request_query }}"><input type="hidden" name="rstatus" value="{{ selected_status }}">{% endif %}
+            <div class="search-field"><input name="{{ review_prefix }}q" type="search" value="{{ review_query }}" maxlength="200" placeholder="البحث في التقييمات..." aria-label="البحث في التقييمات"><button aria-label="بحث">{% include "dashboard/includes/icon.html" with name="search" %}</button></div>
+            <button class="button button-light" type="submit">بحث</button>
+            {% if home_view %}<a class="button button-warm" href="{% url 'dashboard:reviews' %}">عرض الكل {% include "dashboard/includes/icon.html" with name="arrow" %}</a>{% endif %}
+        </form>
+    </header>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="جدول التقييمات"><table>
+        <thead><tr><th scope="col">#</th><th scope="col">الاسم</th><th scope="col">التقييم</th><th scope="col">التعليق</th><th scope="col">تاريخ الإرسال</th><th scope="col">إجراءات</th></tr></thead>
+        <tbody>{% for item in review_rows %}<tr><td>{{ item.pk }}</td><td class="name-cell">{{ item.name }}{% if item.is_demo %}<small class="demo-badge">تجريبي</small>{% endif %}</td><td><span class="review-stars" role="img" aria-label="{{ item.rating }} من 5">{% for star in stars %}<svg viewBox="0 0 24 24" aria-hidden="true" class="{% if star <= item.rating %}filled{% endif %}"><use href="#dash-star"></use></svg>{% endfor %}</span></td><td class="review-text">{{ item.review|truncatechars:90 }}</td><td class="date-cell">{{ item.created_at|date:"Y/m/d H:i"|default:"—" }}</td><td><div class="row-actions"><a class="button button-small button-green" href="{% url 'dashboard:review-detail' item.pk %}">{% include "dashboard/includes/icon.html" with name="eye" %}عرض التقييم</a>{% if perms.core.change_review %}<a class="button button-small button-danger" href="{% url 'dashboard:review-reject' item.pk %}">{% include "dashboard/includes/icon.html" with name="close" %}رفض</a>{% endif %}</div></td></tr>{% empty %}<tr><td colspan="6" class="empty-state">لا توجد تقييمات مطابقة. التقييمات الجديدة لا تُنشر قبل الاعتماد.</td></tr>{% endfor %}</tbody>
+    </table></div>
+    {% include "dashboard/includes/pagination.html" with rows=review_rows param=review_page_param label="التقييمات" %}
+</section>

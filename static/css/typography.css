@@ -1,0 +1,46 @@
+/* Match MyTrip_Django: Thmanyah Display headings and Thmanyah Sans body/UI. */
+@font-face {
+    font-family: "Thmanyah Sans";
+    src: url("../fonts/thmanyahsans/thmanyahsans-Black.woff2") format("woff2");
+    font-weight: 800 900;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Thmanyah Display";
+    src: url("../fonts/thmanyahdisplay/thmanyahserifdisplay-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Thmanyah Display";
+    src: url("../fonts/thmanyahdisplay/thmanyahserifdisplay-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Thmanyah Display";
+    src: url("../fonts/thmanyahdisplay/thmanyahserifdisplay-Black.woff2") format("woff2");
+    font-weight: 800 900;
+    font-style: normal;
+    font-display: swap;
+}
+body { font-family: "Thmanyah Sans", Tahoma, Arial, sans-serif; }
+button, input, select, textarea { font-family: inherit; }
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Thmanyah Display", "Thmanyah Sans", Tahoma, Arial, sans-serif;
+    font-weight: 900;
+    letter-spacing: 0;
+}
+.hero h1, .section-head h2, .section-copy h2, .final-cta h2 {
+    line-height: 1.48;
+    text-wrap: balance;
+    overflow-wrap: normal;
+    word-break: normal;
+}
+.final-cta h2 { font-size: clamp(1.5rem, 2.5vw, 2.25rem); max-width: 1000px; margin-inline: auto; margin-bottom: 28px; }
+@media (max-width: 620px) {
+    .section-head h2, .section-copy h2, .final-cta h2 { line-height: 1.52; }
+}

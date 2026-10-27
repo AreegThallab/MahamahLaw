@@ -1,0 +1,3 @@
+{% extends "dashboard/base.html" %}
+{% block content %}<div class="page-heading"><div><h1>تقييمات العملاء</h1><p>راجع التقييم كاملًا قبل اعتماده ونشره على الموقع.</p></div>{% include "dashboard/includes/live_status.html" %}</div>
+<div data-live-region data-live-mode="reviews" data-live-url="{% url 'dashboard:live' %}">{% include "dashboard/includes/review_panel.html" %}</div>{% endblock %}

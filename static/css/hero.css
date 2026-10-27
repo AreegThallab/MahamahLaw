@@ -1,0 +1,161 @@
+/* Riyadh office hero: local photograph with a curved warm-paper text panel. */
+.hero-office {
+    min-height: clamp(680px, calc(100svh - 86px), 960px);
+    padding: 0;
+    display: grid;
+    align-items: center;
+    isolation: isolate;
+    background: var(--ivory);
+}
+
+.hero-office::before,
+.hero-office::after {
+    content: none;
+}
+
+.hero-office .hero-office-visual {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 73%;
+    z-index: -3;
+}
+
+.hero-office-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 43% center;
+}
+
+.hero-paper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    pointer-events: none;
+}
+
+.hero-paper #hero-gold-shade stop:first-child { stop-color: var(--gold); }
+.hero-paper > path[stroke] { stroke: var(--gold); }
+
+.hero-office .hero-grid {
+    display: flex;
+    justify-content: flex-start;
+    width: min(1400px, calc(100% - 100px));
+    gap: 0;
+    padding-block: 170px 90px;
+}
+
+.hero-office .hero-content {
+    width: 47%;
+    text-align: right;
+}
+
+.hero-office h1 {
+    font-size: clamp(3rem, 5.1vw, 5.5rem);
+    line-height: 1.4;
+    margin-bottom: 28px;
+}
+
+.hero-office .hero-content>p {
+    line-height: 1.95;
+    margin-bottom: 36px;
+}
+
+@media (min-width: 1800px) {
+    .hero-office .hero-grid {
+        width: calc(100% - 180px);
+    }
+}
+
+@media (max-width: 1100px) and (min-width: 901px) {
+    .hero-office .hero-grid {
+        width: calc(100% - 56px);
+    }
+
+    .hero-office .hero-content {
+        width: 48%;
+    }
+
+    .hero-office h1 {
+        font-size: clamp(2.75rem, 4.8vw, 3.5rem);
+    }
+}
+
+@media (max-width: 900px) {
+    .hero-office {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+
+    .hero-office .hero-office-visual {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        height: clamp(280px, 48vw, 420px);
+        flex: none;
+        z-index: 0;
+        order: 0;
+    }
+
+    .hero-office-visual img {
+        object-position: center 62%;
+    }
+
+    .hero-office .hero-office-visual::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0;
+        height: 54px;
+        background: linear-gradient(transparent, var(--ivory));
+        pointer-events: none;
+    }
+
+    .hero-paper {
+        display: none;
+    }
+
+    .hero-office .hero-grid {
+        width: min(660px, calc(100% - 40px));
+        padding-block: 30px 54px;
+        order: 1;
+    }
+
+    .hero-office .hero-content {
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero-office h1 {
+        max-width: 16ch;
+        margin-inline: auto;
+        font-size: clamp(2.4rem, 6vw, 3.5rem);
+    }
+
+    .hero-office .hero-content>p {
+        margin-inline: auto;
+    }
+
+    .hero-office .hero-actions {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 620px) {
+    .hero-office .hero-grid {
+        width: calc(100% - 28px);
+        padding-top: 24px;
+    }
+
+    .hero-office h1 {
+        font-size: clamp(2.15rem, 10vw, 2.75rem);
+        margin-bottom: 20px;
+    }
+
+    .hero-office .hero-content>p {
+        font-size: 1rem;
+        margin-bottom: 28px;
+    }
+}

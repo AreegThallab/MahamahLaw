@@ -1,0 +1,40 @@
+{% load static %}
+<footer class="footer">
+    <div class="footer-grid container">
+        <div>
+            <a class="brand footer-brand logo-brand" href="#home">
+                <img src="{% static 'images/logo.png' %}" alt="شعار محاماة" width="190" height="76">
+            </a>
+            <p>العدالة بكل احترافية</p>
+        </div>
+        <div>
+            <h3>روابط سريعة</h3>
+            {% for link in navLinks %}
+                <a href="{{ link.href }}">{{ link.label }}</a>
+            {% endfor %}
+        </div>
+        <div>
+            <h3>خدماتنا</h3>
+            <a href="#services">الاستشارات القانونية</a>
+            <a href="#services">الترافع والتمثيل</a>
+            <a href="#services">العقود</a>
+            <a href="#services">خدمات الشركات</a>
+        </div>
+        <div>
+            <h3>التواصل</h3>
+            <p>الهاتف: يُحدد لاحقًا</p>
+            <p>البريد الإلكتروني: يُحدد لاحقًا</p>
+            <p>العنوان: يُحدد لاحقًا</p>
+            <p>أوقات العمل: تُحدد لاحقًا</p>
+            <div class="social-links" aria-label="حسابات التواصل تُحدد لاحقًا">
+                <span class="social-icon" role="img" aria-label="LinkedIn — الرابط غير متاح">{% include "includes/icons/linkedin.svg" %}</span>
+                <span class="social-icon" role="img" aria-label="X — الرابط غير متاح">{% include "includes/icons/twitter-x.svg" %}</span>
+                <span class="social-icon" role="img" aria-label="Instagram — الرابط غير متاح">{% include "includes/icons/instagram.svg" %}</span>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom container">
+        <span>© 2026 محاماة للمحاماة والاستشارات القانونية. جميع الحقوق محفوظة.</span>
+        <span>سياسة الخصوصية: تُحدد لاحقًا</span>
+    </div>
+</footer>

@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>{{ page_title|default:"لوحة الإدارة" }} | محاماة</title>
+    <link rel="icon" href="{% static 'images/logo.png' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <script src="{% static 'js/dashboard.js' %}" defer></script>
+    <noscript><style>@media(max-width:900px){.sidebar{position:relative;width:100%;transform:none;visibility:visible}.sidebar-scene{display:none}.sidebar-nav{grid-template-columns:1fr 1fr}.sidebar-toggle{display:none}.sidebar-brand{padding:16px}.logout-form button{padding:12px}}</style></noscript>
+</head>
+<body data-live-enabled="{{ live_updates|yesno:'true,false' }}">
+{% include "dashboard/includes/icons.html" %}
+<button class="drawer-backdrop" aria-label="إغلاق القائمة" tabindex="-1" hidden></button>
+<aside class="sidebar" id="dashboard-sidebar" aria-label="قائمة الإدارة">
+    <a class="sidebar-brand" href="{% url 'dashboard:home' %}"><img src="{% static 'images/logo.png' %}" alt="محاماة" width="64" height="64"><span>محاماة<small>للخدمات والاستشارات القانونية</small><b>MAHAMAH LAW</b></span></a>
+    <nav class="sidebar-nav">
+        {% if perms.core.view_contactrequest and perms.core.view_review %}<a href="{% url 'dashboard:home' %}" {% if section == 'home' %}aria-current="page"{% endif %}>{% include "dashboard/includes/icon.html" with name="home" %}الرئيسية</a>{% endif %}
+        {% if perms.core.view_contactrequest %}
+        <a href="{% url 'dashboard:consultations' %}" {% if section == 'consultations' %}aria-current="page"{% endif %}>{% include "dashboard/includes/icon.html" with name="file" %}طلبات الاستشارات</a>
+        <a href="{% url 'dashboard:contacts' %}" {% if section == 'contacts' %}aria-current="page"{% endif %}>{% include "dashboard/includes/icon.html" with name="message" %}طلبات التواصل</a>
+        {% endif %}
+        {% if perms.core.view_review %}<a href="{% url 'dashboard:reviews' %}" {% if section == 'reviews' %}aria-current="page"{% endif %}>{% include "dashboard/includes/icon.html" with name="star" %}التقييمات</a>{% endif %}
+        {% if perms.accounts.view_user %}<a href="{% url 'dashboard:users' %}" {% if section == 'users' %}aria-current="page"{% endif %}>{% include "dashboard/includes/icon.html" with name="user" %}المستخدمون</a>{% endif %}
+        {% if perms.core.view_contactrequest and perms.core.view_review %}<a href="{% url 'dashboard:reports' %}" {% if section == 'reports' %}aria-current="page"{% endif %}>{% include "dashboard/includes/icon.html" with name="chart" %}التقارير</a>{% endif %}
+        <a href="{% url 'dashboard:settings' %}" {% if section == 'settings' %}aria-current="page"{% endif %}>{% include "dashboard/includes/icon.html" with name="settings" %}الإعدادات</a>
+    </nav>
+    <div class="sidebar-scene" aria-hidden="true"></div>
+    <form class="logout-form" method="post" action="{% url 'dashboard:logout' %}">{% csrf_token %}<button>{% include "dashboard/includes/icon.html" with name="logout" %}تسجيل الخروج</button></form>
+</aside>
+<div class="workspace">
+    <header class="topbar">
+        <button class="icon-button sidebar-toggle" type="button" aria-label="فتح قائمة الإدارة" aria-expanded="false" aria-controls="dashboard-sidebar">{% include "dashboard/includes/icon.html" with name="menu" %}</button>
+        {% if perms.core.view_contactrequest %}<form class="global-search" action="{% url 'dashboard:consultations' %}" method="get"><label class="sr-only" for="global-query">البحث في طلبات الاستشارات</label><input id="global-query" name="q" type="search" placeholder="البحث في طلبات الاستشارات..." maxlength="200"><button aria-label="بحث">{% include "dashboard/includes/icon.html" with name="search" %}</button></form>{% endif %}
+        <div class="topbar-account">
+            {% if perms.core.view_contactrequest %}<a class="notification-link icon-button" href="{% url 'dashboard:consultations' %}?status=new" aria-label="الطلبات الجديدة: {{ new_count }}">{% include "dashboard/includes/icon.html" with name="bell" %}{% if new_count %}<span class="notification-dot"></span>{% endif %}</a>{% endif %}
+            <details class="account-menu"><summary><span class="account-avatar">{% include "dashboard/includes/icon.html" with name="user" %}</span><span>{{ request.user.name|default:request.user.username }}</span>{% include "dashboard/includes/icon.html" with name="chevron" %}</summary><div><a href="{% url 'dashboard:settings' %}">تفضيلات العرض</a><a href="{% url 'admin:index' %}">إدارة Django</a><a href="{% url 'home' %}">عرض الموقع</a></div></details>
+        </div>
+    </header>
+    <main id="main-content" class="dashboard-main">
+        {% for message in messages %}<div class="notice {{ message.tags }}" role="status">{{ message }}</div>{% endfor %}
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="dashboard-footer"><span>محاماة · لوحة الإدارة</span><a href="{% url 'home' %}">العودة للموقع</a></footer>
+</div>
+</body>
+</html>
